@@ -20,8 +20,10 @@ RUN cd /opt \
     && ls \
     && tar -xvzf $PACKAGE_TAR \
     && rm $PACKAGE_TAR
+    
+RUN mv /opt/apache-activemq-$VERSION /opt/apache-activemq
 
-ENV ACTIVEMQ_HOME=/opt/apache-activemq-$VERSION
+ENV ACTIVEMQ_HOME=/opt/apache-activemq
 
 RUN sed -i 's|property name="host" value="127.0.0.1"|property name="host" value="0.0.0.0" |g' $ACTIVEMQ_HOME/conf/jetty.xml
 
